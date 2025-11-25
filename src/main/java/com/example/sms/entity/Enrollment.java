@@ -1,12 +1,16 @@
 package com.example.sms.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "enrollments", uniqueConstraints = @UniqueConstraint(columnNames = {"student_id", "course_id"}))
+@Getter
+@Setter
 public class Enrollment {
 
     enum Status {
@@ -24,6 +28,7 @@ public class Enrollment {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course;
+
     private LocalDate enrollmentDate;
 
     @Enumerated(EnumType.STRING)
